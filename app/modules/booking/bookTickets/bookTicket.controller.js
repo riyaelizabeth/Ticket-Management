@@ -10,6 +10,7 @@ const bookTicket = async(req, res) => {
         return res.send(result);
     } catch (e) {
         res.send({ status: 400, error: true });
+        console.log(e)
     }
 
 
