@@ -2,6 +2,7 @@ const bookTicketQuery = require('./bookTicket.query')
 const { validationResult } = require('express-validator')
 const bookTicket = async(req, res) => {
     try {
+        console.log("book controller");
         let validation = validationResult(req);
         if (!validation.isEmpty())
             return res.send(validation)
