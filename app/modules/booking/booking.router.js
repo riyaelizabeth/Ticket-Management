@@ -6,7 +6,6 @@ const bookTicketValidator = require('./bookTickets/bookTicket.validator');
 const bookTicket = require('./bookTickets/bookTicket.controller');
 const cancelBooking = require('./cancelBooking/cancelBooking.controller')
 const cancelBookingValidator = require('./cancelBooking/cancelBooking.validator')
-
 const editBooking = require('./editBooking/editBooking.controller')
 const editBookingValidator = require('./editBooking/editBooking.validator')
 
@@ -15,7 +14,7 @@ const editBookingValidator = require('./editBooking/editBooking.validator')
 
 module.exports = () => {
     console.log("routerb")
-    router.route('api/user/:id')
+    router.route('/api/user/:id')
         .get(viewMyBookingValidator, viewMyBooking)
         .post(bookTicketValidator, bookTicket)
         .put(editBookingValidator, editBooking)

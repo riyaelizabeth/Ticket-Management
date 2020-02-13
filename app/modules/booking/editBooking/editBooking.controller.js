@@ -2,9 +2,9 @@ const editBookingQuery = require('./editBooking.query')
 const { validationResult } = require('express-validator')
 const bookTicket = async(req, res) => {
     try {
-        let resu = validationResult(req);
-        if (!resu.isEmpty())
-            return res.send(resu)
+        let validation = validationResult(req);
+        if (!validation.isEmpty())
+            return res.send(validation)
         const result = await editBookingQuery(req);
         return res.send(result);
     } catch (e) {
