@@ -1,4 +1,4 @@
-const editBookingQuery = require('.editBooking.query')
+const editBookingQuery = require('./editBooking.query')
 const { validationResult } = require('express-validator')
 const bookTicket = async(req, res) => {
     try {

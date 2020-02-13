@@ -26,7 +26,7 @@ const loginUser = async(req, res) => {
 
     } catch (e) {
         res.send({ status: 500, error: e });
-        console.log(e)
+
     }
 }
 module.exports = loginUser;
