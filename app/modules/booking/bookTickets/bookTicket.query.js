@@ -6,7 +6,7 @@ const bookTicketQuery = async(req) => {
         ticket_id: req.body.ticket_id,
         quantity: req.body.quantity
     })
-    console.log(newBooking);
+
     return newBooking.save();
 }
 module.exports = bookTicketQuery;
