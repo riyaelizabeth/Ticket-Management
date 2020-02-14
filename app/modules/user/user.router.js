@@ -12,9 +12,6 @@ module.exports = () => {
     router.route('/api/users')
         .post(addUserValidate, addUser)
         .get(loginUserValidate, loginUser)
-        // router.route('/api/login')
-        //     .get(loginUserValidate, loginUser)
-
 
     return router;
 
