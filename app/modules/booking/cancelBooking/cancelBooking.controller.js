@@ -3,14 +3,15 @@ const { validationResult } = require('express-validator');
 
 const cancelBooking = async(req, res) => {
     try {
-        let resu = validationResult(req);
-        if (!resu.isEmpty())
-            return res.send(resu)
-        const result = await cancelBookingQuery(req.body);
-        return res.send(result);
+        let validation = validationResult(req);
+        if (!validation.isEmpty())
+            return res.send(validation);
+        const result = await cancelBookingQuery(req);
+        if (result)
+            return res.send("Deleted a booking");
+        return res.send("Booking not found");
     } catch (e) {
-        res.send({ status: 400, error: true });
+        res.status(500).send({ message: e.message });
     }
-
 }
 module.exports = cancelBooking;
