@@ -1,10 +1,11 @@
 const { user_tickets } = require('../../../../models/index');
 const editBookingQuery = async(req) => {
-        await user_tickets.update(({
-                where: {
-                    user_id: req.param.id
-                }
-            })
+    return user_tickets.update({ quantity: req.body.quantity }, {
+        where: {
+            ticket_id: req.body.ticket_id,
+            user_id: req.params.id
         }
+    })
 
-        module.exports = cancelBookingQuery;
+}
+module.exports = editBookingQuery;

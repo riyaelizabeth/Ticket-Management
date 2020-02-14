@@ -1,5 +1,5 @@
 const validationRsult = require('express-validator')
-const { body, param } = require('express-validator')
+const { body } = require('express-validator')
 const addUserValidator = [
     body('firstName').trim()
     .isLength({ max: 30 }).withMessage("Length not satisfied"),
