@@ -4,7 +4,7 @@ const viewMyBookingQuery = async(req) => {
 
     const user = await user_tickets.findAll({
         where: {
-            user_id: req.params.id
+            user_id: req.params.id;
         },
         attributes: ['user_id', 'ticket_id', 'quantity']
     });

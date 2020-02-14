@@ -6,7 +6,7 @@ const viewMyBooking = async(req, res) => {
 
         const validation = validationResult(req);
         if (!validation.isEmpty())
-            return res.send(validation)
+            return res.send(validation);
 
         const result = await viewMyBookingQuery(req);
         if (result.length == 0) {
