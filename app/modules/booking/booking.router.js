@@ -13,13 +13,12 @@ const editBookingValidator = require('./editBooking/editBooking.validator')
 
 
 module.exports = () => {
-    console.log("routerb")
+
     router.route('/api/user/:id')
         .get(viewMyBookingValidator, viewMyBooking)
         .post(bookTicketValidator, bookTicket)
         .put(editBookingValidator, editBooking)
         .delete(cancelBookingValidator, cancelBooking)
-    console.log("in router")
     return router;
 
 

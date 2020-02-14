@@ -1,16 +1,21 @@
 const viewMyBookingQuery = require('./viewMyBooking.query')
 const { validationResult } = require('express-validator')
 const viewMyBooking = async(req, res) => {
-    console.log("in view")
+
     try {
-        Console.log("in")
-        let resu = validationResult(req);
-        if (!resu.isEmpty())
-            return res.send(resu)
+
+        const validation = validationResult(req);
+        if (!validation.isEmpty())
+            return res.send(validation)
+
         const result = await viewMyBookingQuery(req);
+        if (result.length == 0) {
+            return res.send("No bookings found");
+        }
         return res.send(result);
+
     } catch (e) {
-        res.send({ status: 400, error: true });
+        res.status(400).send(e);
     }
 
 
