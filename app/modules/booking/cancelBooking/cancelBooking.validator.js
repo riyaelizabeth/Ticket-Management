@@ -1,10 +1,7 @@
 const { body, param } = require('express-validator')
 
 const cancelBookingValidator = [
-    param('id')
-    .isInt()
-    .notEmpty(),
-    body('ticket_id')
+    body('id')
     .isInt()
 ]
 
