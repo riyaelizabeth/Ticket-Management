@@ -1,8 +1,9 @@
 const { user_tickets } = require('../../../../models/index');
 const editBookingQuery = async(req) => {
-    await user_tickets.update({
+
+    return user_tickets.update({ quantity: req.body.quantity }, {
         where: {
-            quantity: req.param.quantity
+            ticket_id: req.body.ticket_id
         }
     })
 
