@@ -6,9 +6,12 @@ const bookTicket = async(req, res) => {
         if (!validation.isEmpty())
             return res.send(validation)
         const result = await editBookingQuery(req);
-        return res.send("updated");
+        return res.send(result);
     } catch (e) {
         res.send({ status: 400, error: true });
     }
+
+
 }
+
 module.exports = bookTicket;

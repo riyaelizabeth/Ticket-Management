@@ -1,4 +1,4 @@
-const { body, param } = require('express-validator');
+const { body, param } = require('express-validator')
 const bookTicketValidator = [
     param('id')
     .isInt(),
