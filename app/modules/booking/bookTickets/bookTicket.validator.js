@@ -5,5 +5,4 @@ const bookTicketValidator = [
     body('ticket_id')
     .isInt()
 ]
-
 module.exports = bookTicketValidator;

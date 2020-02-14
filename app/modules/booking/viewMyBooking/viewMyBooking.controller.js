@@ -1,9 +1,7 @@
 const viewMyBookingQuery = require('./viewMyBooking.query')
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 const viewMyBooking = async(req, res) => {
-
     try {
-
         const validation = validationResult(req);
         if (!validation.isEmpty())
             return res.send(validation);
@@ -15,10 +13,7 @@ const viewMyBooking = async(req, res) => {
         return res.send(result);
 
     } catch (e) {
-        res.status(400).send(e);
+        res.status(500).send(e.message);
     }
-
-
 }
-
 module.exports = viewMyBooking;
