@@ -5,15 +5,12 @@ const viewMyBooking = async(req, res) => {
         const validation = validationResult(req);
         if (!validation.isEmpty())
             return res.send(validation);
-
         const result = await viewMyBookingQuery(req);
-        if (result.length == 0) {
+        if (result.length == 0)
             return res.send("No bookings found");
-        }
         return res.send(result);
-
     } catch (e) {
-        res.status(500).send(e.message);
+        res.status(500).send({ message: e.message });
     }
 }
 module.exports = viewMyBooking;
