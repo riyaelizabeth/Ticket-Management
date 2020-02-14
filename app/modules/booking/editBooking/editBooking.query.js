@@ -6,6 +6,6 @@ const editBookingQuery = async(req) => {
             user_id: req.params.id
         }
     })
-
+    console.log("yes");
 }
 module.exports = editBookingQuery;

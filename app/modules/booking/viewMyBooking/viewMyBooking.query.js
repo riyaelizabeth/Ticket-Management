@@ -1,10 +1,10 @@
 const { user_tickets } = require('../../../../models/index');
 const viewMyBookingQuery = async(req) => {
-    await user_tickets.findAll({
+    return user_tickets.findAll({
         where: {
-            user_id: req.param.id
-        }
+            user_id: req.params.id
+        },
+        attributes: ['user_id', 'ticket_id', 'quantity']
     });
 }
-
 module.exports = viewMyBookingQuery;
