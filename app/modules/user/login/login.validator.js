@@ -4,7 +4,5 @@ const loginUserValidator = [
     .isEmail(),
     body('password')
     .notEmpty()
-
 ]
-
 module.exports = loginUserValidator;

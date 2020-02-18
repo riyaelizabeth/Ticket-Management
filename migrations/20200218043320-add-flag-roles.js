@@ -6,12 +6,14 @@ module.exports = {
         return queryInterface.addColumn('roles',
             'isActive', {
                 type: Sequelize.BOOLEAN,
+                defaultValue: true
             }
 
         ).then(value => {
             queryInterface.addColumn('roles',
                 'isDeleted', {
                     type: Sequelize.BOOLEAN,
+                    defaultValue: false
                 }
             )
 

@@ -5,12 +5,14 @@ module.exports = {
         return queryInterface.addColumn('users',
             'isActive', {
                 type: Sequelize.BOOLEAN,
+                defaultValue: true,
             }
 
         ).then(value => {
             queryInterface.addColumn('users',
                 'isDeleted', {
                     type: Sequelize.BOOLEAN,
+                    defaultValue: false,
                 }
             )
 
