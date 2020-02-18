@@ -1,6 +1,6 @@
 const { param } = require('express-validator');
-const viewMyBookingValidator = [
+const viewMyBookingValidate = [
     param('id')
     .isInt()
 ]
-module.exports = viewMyBookingValidator;
+module.exports = viewMyBookingValidate;
