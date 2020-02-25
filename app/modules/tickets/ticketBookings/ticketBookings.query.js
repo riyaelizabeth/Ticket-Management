@@ -29,7 +29,7 @@ const ticketBookingsQuery = async(ticketId) => {
             }]
         }]
     })
-    console.log(res)
+
 }
 
 module.exports = ticketBookingsQuery;

@@ -3,12 +3,12 @@ const { users: Users } = require('../../../../models');
 const bcrypt = require('bcryptjs');
 
 const { Op } = require("sequelize");
-const findEmail = async(req) => {
+const findEmail = async(email) => {
 
 
 
 
-    return Users.findOne({ where: { email: req.body.email } });
+    return Users.findOne({ where: { email: email } });
 
 
 

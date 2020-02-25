@@ -3,8 +3,11 @@
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         return [
-            await queryInterface.addColumn('user_tickets', 'isActive', { type: Sequelize.BOOLEAN }),
-            await queryInterface.addColumn('user_tickets', 'isDeleted', { type: Sequelize.BOOLEAN })
+            await queryInterface.addColumn('user_tickets', 'isActive', {
+                type: Sequelize.BOOLEAN,
+                defaultValue: true
+            }),
+            await queryInterface.addColumn('user_tickets', 'isDeleted', { type: Sequelize.BOOLEAN, defaultValue: false })
         ]
     },
 

@@ -1,11 +1,29 @@
-const { user_tickets } = require('../../../../models/index');
+const { user_tickets: Bookings, tickets: Tickets, Sequelize } = require('../../../../models/index');
+const Op = Sequelize.Op;
+const bookTicketQuery = async(req, transaction) => {
+    return Bookings.create({
+            user_id: req.params.id,
+            ticket_id: req.body.ticket_id,
+            quantity: req.body.quantity
+        },
+        transaction
+    );
+};
+const decrementAvailableTickets = async(body, transaction) => {
+    return Tickets.update({
+            available_tickets: Sequelize.literal(`available_tickets-${body.quantity}`)
+        }, {
+            where: {
+                id: {
+                    [Op.eq]: body.ticket_id
+                }
+            }
+        },
+        transaction
+    );
+};
 
-const bookTicketQuery = async(req) => {
-    const newBooking = await user_tickets.create({
-        user_id: req.params.id,
-        ticket_id: req.body.ticket_id,
-        quantity: req.body.quantity
-    })
-    return newBooking.save();
-}
-module.exports = bookTicketQuery;
+module.exports = {
+    bookTicketQuery,
+    decrementAvailableTickets
+};

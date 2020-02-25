@@ -1,14 +1,21 @@
-const bookTicketQuery = require('./bookTicket.query')
-const { validationResult } = require('express-validator')
+const { bookTicketQuery, decrementAvailableTickets } = require('./bookTicket.query');
+const { validationResult } = require('express-validator');
+const { sequelize } = require('../../../../models');
+
 const bookTicket = async(req, res) => {
     try {
         let validation = validationResult(req);
-        if (!validation.isEmpty())
-            return res.send(validation)
-        const result = await bookTicketQuery(req);
-        return res.send(result);
+        if (!validation.isEmpty()) {
+            return res.send(validation);
+        }
+        transaction = await sequelize.transaction();
+        const [userBooking] = await Promise.all([
+            bookTicketQuery(req, transaction),
+            decrementAvailableTickets(req.body, transaction)
+        ]);
+        return res.send("created & updated");
     } catch (e) {
-        res.send({ status: 500, error: true });
+        res.status(500).send({ message: e.message });
     }
 }
 module.exports = bookTicket;

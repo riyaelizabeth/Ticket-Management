@@ -8,8 +8,8 @@ const loginUser = async(req, res) => {
         const validation = validationResult(req);
         if (!validation.isEmpty())
             return res.send(validation);
-        console.log("gdg")
-        const username = await findEmail(req)
+
+        const username = await findEmail(req.body.email)
         if (!username)
             res.send("email doesnot exists")
 

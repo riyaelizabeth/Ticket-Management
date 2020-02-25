@@ -11,7 +11,10 @@ const viewBookings = require('./view_bookings/viewBookings.controller');
 const viewBookingsValidator = require('./view_bookings/viewBookings.validator');
 const viewBookingDetail = require('./viewBookingDetail/viewBookingDetail.controller');
 const viewBookingDetailValidator = require('./viewBookingDetail/viewBookingDetail.validator');
-
+const viewCurrentBookingsValidator = require('./viewCurrentBookings/viewCurrentBookings.validator');
+const viewCurrentBookings = require('./viewCurrentBookings/viewCurrentBookings.controller');
+// const searchBookingsValidator = require('./searchBookings/searchBookings.validator');
+// const searchBookings = require('./searchBookings/searchBookings.controller');
 
 
 module.exports = () => {
@@ -20,14 +23,14 @@ module.exports = () => {
         .post(bookTicketValidator, bookTicket)
         .put(editBookingValidator, editBooking)
         .delete(cancelBookingValidator, cancelBooking)
-
-
+        // router.route('/api/bookings')
+        //.get(searchBookingsValidator, searchBookings)
     router.route('/api/bookings')
         .get(viewBookingsValidator, viewBookings)
-
-    router.route('/api/bookings/:id')
+        //router.route('/api/bookings/:id')
         .get(viewBookingDetailValidator, viewBookingDetail)
-
+    router.route('/api/currentbookings')
+        .get(viewCurrentBookingsValidator, viewCurrentBookings)
     return router;
 
 
