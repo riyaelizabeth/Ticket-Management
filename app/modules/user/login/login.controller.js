@@ -12,8 +12,6 @@ const loginUser = async(req, res) => {
         const username = await findEmail(req.body.email)
         if (!username)
             res.send("email doesnot exists")
-
-
         bcrypt.compare(req.body.password, username.password, function(err, isMatch) {
             if (err) {
                 throw err

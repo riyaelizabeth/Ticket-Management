@@ -18,20 +18,16 @@ const viewCurrentBookings = require('./viewCurrentBookings/viewCurrentBookings.c
 
 
 module.exports = () => {
-    router.route('/api/user/:id')
+    router.route('/api/bookings/:id')
         .get(viewMyBookingValidator, viewMyBooking)
         .post(bookTicketValidator, bookTicket)
         .put(editBookingValidator, editBooking)
         .delete(cancelBookingValidator, cancelBooking)
-        // router.route('/api/bookings')
-        //.get(searchBookingsValidator, searchBookings)
     router.route('/api/bookings')
         .get(viewBookingsValidator, viewBookings)
         //router.route('/api/bookings/:id')
-        .get(viewBookingDetailValidator, viewBookingDetail)
+        //.get(viewBookingDetailValidator, viewBookingDetail)
     router.route('/api/currentbookings')
         .get(viewCurrentBookingsValidator, viewCurrentBookings)
     return router;
-
-
 }

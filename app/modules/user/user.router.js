@@ -20,6 +20,5 @@ module.exports = () => {
         .post(deleteBookingValidate, deleteBooking)
     router.route('/api/users/resetpassword')
         .put(changePasswordValidate, changePassword)
-    console.log("enterrresddd")
     return router;
 }
