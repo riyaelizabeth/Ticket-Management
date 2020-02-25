@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
         user_id: DataTypes.INTEGER,
         ticket_id: DataTypes.INTEGER,
         quantity: DataTypes.INTEGER,
-
+        isActive: DataTypes.BOOLEAN,
+        isDeleted: DataTypes.BOOLEAN,
     }, {});
     user_tickets.associate = function(models) {
         this.belongsTo(models.users, {
