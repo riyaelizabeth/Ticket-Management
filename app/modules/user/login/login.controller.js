@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
-const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
+const { myEmitter } = require('../../../../events/event')
 
 const { findEmail, checkpassword } = require('./login.query');
 const { validationResult } = require('express-validator');
@@ -32,7 +31,5 @@ const loginUser = async(req, res) => {
 
     }
 }
-myEmitter.on('loginUser', (name) => {
-    console.log("Welcome " + name)
-})
+
 module.exports = loginUser;
