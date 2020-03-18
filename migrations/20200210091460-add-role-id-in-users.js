@@ -2,7 +2,7 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.addColumn('users',
+        return queryInterface.addColumn('',
             'roleId', {
                 type: Sequelize.INTEGER,
                 references: {

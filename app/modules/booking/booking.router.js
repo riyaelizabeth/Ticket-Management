@@ -13,8 +13,9 @@ const viewBookingDetail = require('./viewBookingDetail/viewBookingDetail.control
 const viewBookingDetailValidator = require('./viewBookingDetail/viewBookingDetail.validator');
 const viewCurrentBookingsValidator = require('./viewCurrentBookings/viewCurrentBookings.validator');
 const viewCurrentBookings = require('./viewCurrentBookings/viewCurrentBookings.controller');
-// const searchBookingsValidator = require('./searchBookings/searchBookings.validator');
-// const searchBookings = require('./searchBookings/searchBookings.controller');
+const showTime = require('../../../cron/show_time')
+    // const searchBookingsValidator = require('./searchBookings/searchBookings.validator');
+    // const searchBookings = require('./searchBookings/searchBookings.controller');
 
 
 module.exports = () => {
@@ -29,5 +30,7 @@ module.exports = () => {
         //.get(viewBookingDetailValidator, viewBookingDetail)
     router.route('/api/currentbookings')
         .get(viewCurrentBookingsValidator, viewCurrentBookings)
+    router.route('/api/todaysBookings')
+        .get(showTime)
     return router;
 }

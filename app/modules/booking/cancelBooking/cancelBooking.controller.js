@@ -6,7 +6,7 @@ const cancelBooking = async(req, res) => {
         let validation = validationResult(req);
         if (!validation.isEmpty())
             return res.send(validation);
-        const result = await cancelBookingQuery(req);
+        const result = await cancelBookingQuery(req.params);
         if (result)
             return res.send("Deleted a booking");
         return res.send("Booking not found");
