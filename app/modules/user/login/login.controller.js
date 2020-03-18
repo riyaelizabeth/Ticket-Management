@@ -19,11 +19,11 @@ const loginUser = async(req, res) => {
                 throw err
             } else if (!isMatch) {
                 res.send("Invalid login!")
-                console.log("Keriii")
+
 
             } else {
                 res.send("login successfull!")
-                myEmitter.emit('loginUser')
+                myEmitter.emit('loginUser', `${req.body.email}`)
             }
         })
 
@@ -32,7 +32,7 @@ const loginUser = async(req, res) => {
 
     }
 }
-myEmitter.on('loginUser', () => {
-    console.log("Login successfull")
+myEmitter.on('loginUser', (name) => {
+    console.log("Welcome " + name)
 })
 module.exports = loginUser;
