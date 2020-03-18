@@ -4,7 +4,8 @@ const bookTicketQuery = async(req, transaction) => {
     return Bookings.create({
             user_id: req.params.id,
             ticket_id: req.body.ticket_id,
-            quantity: req.body.quantity
+            quantity: req.body.quantity,
+
         },
         transaction
     );
