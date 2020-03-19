@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const { myEmitter } = require('../../../../events/event')
 
 const { findEmail, checkpassword } = require('./login.query');
 const { validationResult } = require('express-validator');
@@ -17,8 +18,11 @@ const loginUser = async(req, res) => {
                 throw err
             } else if (!isMatch) {
                 res.send("Invalid login!")
+
+
             } else {
                 res.send("login successfull!")
+                myEmitter.emit('loginUser', `${req.body.email}`)
             }
         })
 
@@ -27,4 +31,5 @@ const loginUser = async(req, res) => {
 
     }
 }
+
 module.exports = loginUser;
