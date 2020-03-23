@@ -11,8 +11,6 @@ const viewCurrentBookingsQuery = require('./cron/show_time')
     //const sendNotification = require('./cron/show_time')
 const dotenv = require('dotenv');
 var moment = require('moment');
-const mongoConnectionString = 'mongodb://127.0.0.1/agenda';
-
 //const agenda = new Agenda({ db: { address: mongoConnectionString, collection: 'Bookings' } });
 moment().format();
 
