@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-require('./app/modules/jobs/agenda');
+
 // const Agenda = require('agenda')
 // const moogoose = require('mongoose');
 // moogoose.connect('mongodb://localhost/TicketManagement')
@@ -34,41 +34,41 @@ app.listen(port, () => console.log(`listening to port ${port}`));
 //     abc();
 // });		
 
-PubNub = require('pubnub');
+// PubNub = require('pubnub');
 
 
-var pubnub = new PubNub({
-    subscribeKey: "mySubscribeKey",
-    publishKey: "myPublishKey",
-    secretKey: "secretKey",
-    uuid: "myUniqueUUID",
-    ssl: true
-});
+// var pubnub = new PubNub({
+//     subscribeKey: "mySubscribeKey",
+//     publishKey: "myPublishKey",
+//     secretKey: "secretKey",
+//     uuid: "myUniqueUUID",
+//     ssl: true
+// });
 
-pubnub.subscribe({
-    channels: ['my_channel'],
-});
+// pubnub.subscribe({
+//     channels: ['my_channel'],
+// });
 
-pubnub.publish({
-        message: {
-            such: 'object'
-        },
-        channel: 'my_channel',
-        sendByPost: false, // true to send via post
-        storeInHistory: false, //override default storage options
-        meta: {
-            "cool": "meta"
-        } // publish extra meta with the request
-    },
-    function(status, response) {
-        if (status.error) {
-            // handle error
-            console.log(status)
-        } else {
-            console.log("message Published w/ timetoken", response.timetoken)
-        }
-    }
-);
+// pubnub.publish({
+//         message: {
+//             such: 'object'
+//         },
+//         channel: 'my_channel',
+//         sendByPost: false, // true to send via post
+//         storeInHistory: false, //override default storage options
+//         meta: {
+//             "cool": "meta"
+//         } // publish extra meta with the request
+//     },
+//     function(status, response) {
+//         if (status.error) {
+//             // handle error
+//             console.log(status)
+//         } else {
+//             console.log("message Published w/ timetoken", response.timetoken)
+//         }
+//     }
+// );
 
 
 
