@@ -6,10 +6,7 @@ const bookTicket = async(req, res) => {
     try {
         let validation = validationResult(req);
         if (!validation.isEmpty()) {
-            console.log("%%%", error);
-
             return res.send(validation);
-
         }
         transaction = await sequelize.transaction();
         const [userBooking] = await Promise.all([
