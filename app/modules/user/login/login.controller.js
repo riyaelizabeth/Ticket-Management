@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 const { myEmitter } = require('../../../../events/event')
-
+const config = require('../../../../config/config')
 const { findEmail, checkpassword } = require('./login.query');
 const { validationResult } = require('express-validator');
-
+const json = require('jsonwebtoken');
 const loginUser = async(req, res) => {
     try {
         const validation = validationResult(req);
@@ -19,8 +19,22 @@ const loginUser = async(req, res) => {
             } else if (!isMatch) {
                 res.send("Invalid login!")
 
+                res.send(403).json({
+                    success: false,
+                    message: 'Incorrect username or password'
+                });
+
 
             } else {
+
+                let token = json.sign({ username }, config.secret, {
+                    expiresIn: '24h'
+                });
+                res.json({
+                    success: true,
+                    message: 'Authentication successful!',
+                    token: token
+                });
                 res.send("login successfull!")
                 myEmitter.emit('loginUser', `${req.body.email}`)
             }
