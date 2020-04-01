@@ -3,7 +3,8 @@ const { myEmitter } = require('../../../../events/event')
 const config = require('../../../../config/config')
 const { findEmail, checkpassword } = require('./login.query');
 const { validationResult } = require('express-validator');
-const json = require('jsonwebtoken');
+
+const auth = require('../../booking/bookTickets/authhelper');
 const loginUser = async(req, res) => {
     try {
         const validation = validationResult(req);
@@ -17,8 +18,6 @@ const loginUser = async(req, res) => {
             if (err) {
                 throw err
             } else if (!isMatch) {
-                res.send("Invalid login!")
-
                 res.send(403).json({
                     success: false,
                     message: 'Incorrect username or password'
@@ -26,15 +25,8 @@ const loginUser = async(req, res) => {
 
 
             } else {
-
-                let token = json.sign({ username }, config.secret, {
-                    expiresIn: '24h'
-                });
-                res.json({
-                    success: true,
-                    message: 'Authentication successful!',
-                    token: token
-                });
+                console.log("####", username.id)
+                auth.generateToken(username.id, res)
                 res.send("login successfull!")
                 myEmitter.emit('loginUser', `${req.body.email}`)
             }

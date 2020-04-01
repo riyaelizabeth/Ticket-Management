@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require('../booking/bookTickets/authhelper');
+
 const viewMyBookingValidator = require('../user/viewMyBooking/viewMyBooking.validator');
 const viewMyBooking = require('../user/viewMyBooking/viewMyBooking.controller');
 const bookTicketValidator = require('./bookTickets/bookTicket.validator');
@@ -22,7 +22,7 @@ const showTime = require('../../../cron/show_time')
 module.exports = () => {
     router.route('/api/bookings/:id')
         .get(viewMyBookingValidator, viewMyBooking)
-        .post(bookTicketValidator, auth, bookTicket)
+        .post(bookTicketValidator, bookTicket)
         .put(editBookingValidator, editBooking)
         .delete(cancelBookingValidator, cancelBooking)
     router.route('/api/bookings')
