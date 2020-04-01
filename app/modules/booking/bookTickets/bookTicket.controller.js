@@ -8,26 +8,25 @@ const bookTicket = async(req, res) => {
         let validation = validationResult(req);
         if (!validation.isEmpty()) {
             return res
-                .status(HTTPStatus.ACCEPTED)
                 .send(validation)
         }
-        const verify = await auth.verifytoken(req);
-        console.log(verify)
-        if (verify) {
+
+        await auth.verifytoken(req, res);
+        console.log(req.user.id)
+        if (req.user.id) {
+
             transaction = await sequelize.transaction();
-            const [userBooking] = await Promise.all([
-                bookTicketQuery(req, verify, transaction),
+            await Promise.all([
+                bookTicketQuery(req, transaction),
                 decrementAvailableTickets(req.body, transaction)
             ]);
-            return res
-                .status(HTTPStatus.OK)
-                .message("created and updated")
+            return res.send("booking created")
         } else {
             res.send()
         }
     } catch (e) {
-        res.
-        status(HttpStatus.getStatusCode('Server Error'))
+        res
+        //  status(HttpStatus.getStatusCode('Server Error'))
             .send({ message: e.message });
     }
 }

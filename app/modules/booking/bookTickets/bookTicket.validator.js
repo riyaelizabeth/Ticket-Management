@@ -5,7 +5,6 @@ const bookTicketValidator = [
     body('ticket_id')
     .isInt().withMessage("Invalid Type")
     .custom((ticket_id, { req }) => {
-        console.log("**********************************")
         return findAvailable(ticket_id)
             .then(ticket => {
                 if (!ticket)

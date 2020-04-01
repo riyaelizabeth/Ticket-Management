@@ -7,7 +7,7 @@ const generateToken = (id, res) => {
     let token = json.sign({ id: id }, config.secret, {
         expiresIn: '24h'
     });
-    res.json({
+    return res.json({
         success: true,
         message: 'Authentication successful!',
         token: token
@@ -18,12 +18,10 @@ const verifytoken = (req, res, next) => {
     const bearerHeader = req.headers['authorization'];
 
     if (bearerHeader) {
-        console.log("keri1S")
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
         req.token = bearerToken;
         if (req.token) {
-            console.log("keri2")
             jwt.verify(req.token, config.secret, (err, decoded) => {
                 if (err) {
                     return res.json({
@@ -31,8 +29,10 @@ const verifytoken = (req, res, next) => {
                         message: 'Token is not valid'
                     });
                 } else {
-                    req.decoded = decoded;
-                    return decoded;
+                    req.user = {
+                        id: decoded.id
+                    };
+                    return req
                 }
             });
         } else {
