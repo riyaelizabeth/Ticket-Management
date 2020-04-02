@@ -7,7 +7,7 @@ const viewCurrentBookings = async(req, res) => {
         if (!validation.isEmpty())
             return res.send(validation);
 
-        const result = await viewCurrentBookingsQuery();
+        const result = await viewCurrentBookingsQuery(req.query.page, req.query.pagesize);
 
         if (!result.length)
             return res.send("No bookings found");

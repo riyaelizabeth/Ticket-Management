@@ -1,9 +1,10 @@
 const { user_tickets: UserTickets, users: Users, tickets: Tickets, Sequelize } = require('../../../../models/index');
 const Op = Sequelize.Op;
-const viewBookingsQuery = async(searchKey, sortKey, sortOrder) => {
-    console.log("searchhhhhs", searchKey);
+const paginatedResults = require('../../pagination')
+const viewBookingsQuery = async(searchKey, sortKey, sortOrder, page, pagesize, req) => {
 
     let query = {
+
         attributes: [
             'id', 'firstName', 'lastName'
         ],
@@ -18,10 +19,11 @@ const viewBookingsQuery = async(searchKey, sortKey, sortOrder) => {
         }],
         order: [
             [sortKey, sortOrder],
-        ]
+        ],
+
     };
 
-    if (searchKey)
+    if (searchKey) {
         query.where = {
             [Op.or]: [{
                 firstName: {
@@ -32,9 +34,10 @@ const viewBookingsQuery = async(searchKey, sortKey, sortOrder) => {
                     [Op.iLike]: `%${searchKey}%`
                 }
             }]
-        };
+        }
 
-    return Users.findAll(query);
-};
+    };
+    return await Users.findAll(query)
 
+}
 module.exports = viewBookingsQuery;
