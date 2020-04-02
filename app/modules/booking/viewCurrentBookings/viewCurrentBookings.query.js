@@ -1,8 +1,8 @@
 const { user_tickets: UserTickets, users: Users, tickets: Tickets, Sequelize } = require('../../../../models/index');
 const Op = Sequelize.Op;
+const viewCurrentBookingsQuery = (params) => {
 
-const viewCurrentBookingsQuery = () => {
-    return UserTickets.findAll({
+    let query = {
         attributes: [
             ['id', 'booking_id'], 'ticket_id', 'quantity'
         ],
@@ -20,6 +20,12 @@ const viewCurrentBookingsQuery = () => {
                 attributes: ['movie_name']
             }
         ]
-    });
+
+    }
+    if (parseInt(parameters.limit)) {
+        query.limit = parameters.limit;
+        query.offset = parameters.offset;
+    }
+    return UserTickets.findAll(query);
 }
 module.exports = viewCurrentBookingsQuery;

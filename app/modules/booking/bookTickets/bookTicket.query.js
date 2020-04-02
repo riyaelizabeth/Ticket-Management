@@ -2,7 +2,7 @@ const { user_tickets: Bookings, tickets: Tickets, Sequelize } = require('../../.
 const Op = Sequelize.Op;
 const bookTicketQuery = async(req, transaction) => {
     return Bookings.create({
-            user_id: req.params.id,
+            user_id: req.user.id,
             ticket_id: req.body.ticket_id,
             quantity: req.body.quantity,
 

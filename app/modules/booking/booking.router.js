@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const viewMyBookingValidator = require('../user/viewMyBooking/viewMyBooking.validator');
 const viewMyBooking = require('../user/viewMyBooking/viewMyBooking.controller');
 const bookTicketValidator = require('./bookTickets/bookTicket.validator');
