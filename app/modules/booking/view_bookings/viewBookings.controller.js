@@ -5,9 +5,14 @@ const viewBookings = async(req, res) => {
         const validation = validationResult(req);
         if (validation.isEmpty())
             return res.send(validation);
-
-        let result = await viewBookingsQuery(req.query.search_key, req.query.sort_key || 'firstName', req.query.sort_order || 'asc', req.query.page || global.DEFAULT_PAGINATION_LIMIT, req.query.pagesize || 0)
-        console.log(result)
+        const parameters = {
+            searchKey: req.query.search_key,
+            sortKey: req.query.sort_key || 'firstName',
+            sortOrder: req.query.sort_order || 'asc',
+            limit: req.query.pagesize || 1,
+            offset: req.query.page > 1 ? req.query.page * (req.query.pagesize - 1) : 0
+        }
+        let result = await viewBookingsQuery(parameters)
         if (!result)
             return res.send("No bookings found");
         res.send(result)

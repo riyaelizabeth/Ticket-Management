@@ -12,7 +12,6 @@ const bookTicket = async(req, res) => {
         }
 
         await auth.verifytoken(req, res);
-        console.log(req.user.id)
         if (req.user.id) {
 
             transaction = await sequelize.transaction();
