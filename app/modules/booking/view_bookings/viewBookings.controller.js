@@ -1,5 +1,4 @@
 const viewBookingsQuery = require('./viewBookings.query')
-const paginatedResults = require('../../pagination')
 const { validationResult } = require('express-validator');
 const viewBookings = async(req, res) => {
     try {
@@ -7,8 +6,8 @@ const viewBookings = async(req, res) => {
         if (validation.isEmpty())
             return res.send(validation);
 
-        let result = await viewBookingsQuery(req.query.search_key, req.query.sort_key || 'firstName', req.query.sort_order || 'asc', req.query.page, req.query.pagesize);
-
+        let result = await viewBookingsQuery(req.query.search_key, req.query.sort_key || 'firstName', req.query.sort_order || 'asc', req.query.page || global.DEFAULT_PAGINATION_LIMIT, req.query.pagesize || 0)
+        console.log(result)
         if (!result)
             return res.send("No bookings found");
         res.send(result)

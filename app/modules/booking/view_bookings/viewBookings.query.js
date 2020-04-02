@@ -1,10 +1,7 @@
 const { user_tickets: UserTickets, users: Users, tickets: Tickets, Sequelize } = require('../../../../models/index');
 const Op = Sequelize.Op;
-const paginatedResults = require('../../pagination')
-const viewBookingsQuery = async(searchKey, sortKey, sortOrder, page, pagesize, req) => {
-
+const viewBookingsQuery = async(searchKey, sortKey, sortOrder, page, pagesize) => {
     let query = {
-
         attributes: [
             'id', 'firstName', 'lastName'
         ],
@@ -37,7 +34,19 @@ const viewBookingsQuery = async(searchKey, sortKey, sortOrder, page, pagesize, r
         }
 
     };
-    return await Users.findAll(query)
+    if (page, pagesize) {
+        const offset = page * pagesize
+        const limit = pagesize
+        query = {
+            limit: limit,
+            offset: offset
+        }
 
+    }
+
+    return Users.findAll(query)
 }
+
+
+
 module.exports = viewBookingsQuery;
