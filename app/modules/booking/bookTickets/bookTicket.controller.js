@@ -5,6 +5,7 @@ const HttpStatus = require('http-status-codes');
 const auth = require('../bookTickets/authhelper');
 const bookTicket = async(req, res) => {
     try {
+        console.log(req.body)
         let validation = validationResult(req);
         if (!validation.isEmpty()) {
             return res

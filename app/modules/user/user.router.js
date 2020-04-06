@@ -1,4 +1,11 @@
 const router = require('express').Router()
+const multer = require('multer');
+
+const upload = multer({
+
+    dest: '../../uploads'
+});
+
 const viewMyBooking = require('./viewMyBooking/viewMyBooking.controller');
 const viewMyBookingValidate = require('./viewMyBooking/viewMyBooking.validator');
 const addUserValidate = require('./add_User/add_User.validator');
@@ -9,9 +16,13 @@ const deleteBookingValidate = require('./deleteBooking/deleteBooking.validator')
 const deleteBooking = require('./deleteBooking/deleteBooking.controller');
 const changePasswordValidate = require('./changePassword/changePassword.validator');
 const changePassword = require('./changePassword/changePassword.controller');
+const editUserValidate = require('../user/edit_User/editUser.validator');
+const editUser = require('../user/edit_User/editUser.controller');
 module.exports = () => {
     router.route('/api/users')
         .post(addUserValidate, addUser)
+    router.route('/api/users/:id', upload.single('userImage'))
+        .post(editUserValidate, editUser)
     router.route('/api/users/login')
         .post(loginUserValidate, loginUser)
     router.route('/api/users/:id/bookings')
