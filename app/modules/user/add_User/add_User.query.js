@@ -1,5 +1,7 @@
 const { users: Users } = require('../../../../models');
 const { Op } = require("sequelize");
+const multer = require('multer');
+
 const countUsername = async(email) => {
     return Users.count({
         where: {
@@ -11,6 +13,8 @@ const countUsername = async(email) => {
 }
 
 const addUserQuery = async(body, password) => {
+
+    console.log(body);
     return Users.create({
         firstName: body.firstName,
         lastName: body.lastName,

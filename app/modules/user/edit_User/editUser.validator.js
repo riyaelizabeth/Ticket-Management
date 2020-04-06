@@ -1,6 +1,6 @@
 const validationRsult = require('express-validator')
-const { body } = require('express-validator')
-const addUserValidator = [
+const { body, param } = require('express-validator')
+const editUserValidator = [
     body('firstName').trim()
     .isLength({ max: 30 }).withMessage("Length not satisfied"),
     // body('email').trim()
@@ -10,4 +10,4 @@ const addUserValidator = [
     // .isNotEmpty()
 ]
 
-module.exports = addUserValidator;
+module.exports = editUserValidator;
